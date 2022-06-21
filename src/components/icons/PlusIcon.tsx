@@ -1,33 +1,38 @@
-interface PlayIconProps {
+interface PlusIconProps {
   height?: number;
   width?: number;
+  stroke?: string;
 }
 
-const PlayIcon = ({ height = 24, width = 24 }: PlayIconProps) => {
+const PlusIcon = ({
+  height = 24,
+  width = 24,
+  stroke = 'white',
+}: PlusIconProps) => {
   return (
     <svg
       width={width}
       height={height}
-      viewBox={`0 0 ${width} ${height}`}
+      viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
         d="M12 2V22"
-        stroke="white"
-        stroke-width="4"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        stroke={stroke}
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M2 12L22 12"
-        stroke="white"
-        stroke-width="4"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        stroke={stroke}
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
 };
 
-export default PlayIcon;
+export default PlusIcon;

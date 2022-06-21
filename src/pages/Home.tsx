@@ -1,3 +1,4 @@
+import HomeContent from '../components/home/DiscoverList';
 import Hero from '../components/home/Hero';
 import { useMovieConfiguration } from '../queries/movieQueries';
 
@@ -10,8 +11,9 @@ const Home = () => {
   // TODO: Implement total_results zero case
 
   return (
-    <div className="flex">
+    <div className="flex flex-col">
       <Hero />
+      <HomeContent />
     </div>
   );
 };
