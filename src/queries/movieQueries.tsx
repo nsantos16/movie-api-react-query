@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import { useQuery } from 'react-query';
+import { FilterContext } from '../context/filterContext';
 import {
   Genre,
   Movie,
@@ -15,10 +17,26 @@ export interface PaginatedResponse<T> {
 }
 
 // https://developers.themoviedb.org/3/discover/movie-discover
-export const useDiscoverMoviesQuery = (page = 1) => {
+// https://developers.themoviedb.org/3/search/search-movies
+export const useDiscoverMoviesQuery = (
+  page = 1,
+  withoutFilters: boolean = false,
+) => {
+  const { searchTerm } = useContext(FilterContext);
+  const filters = withoutFilters ? {} : { searchTerm };
+
   return useQuery(
-    ['movies', { page }],
+    ['movies', { page, ...filters }],
     async () => {
+      if (searchTerm) {
+        const movies = await apiFetch<PaginatedResponse<Movie>>(
+          `/search/movie?query=${searchTerm}&page=${page}`,
+          { method: 'GET' },
+        );
+
+        return movies;
+      }
+
       const movies = await apiFetch<PaginatedResponse<Movie>>(
         `/discover/movie?page=${page}`,
         {

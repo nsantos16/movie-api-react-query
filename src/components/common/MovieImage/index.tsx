@@ -4,11 +4,21 @@ import Spinner from '../Spinner';
 
 interface MovieImageProps {
   className?: string;
-  backgroundImagePath: string;
+  backgroundImagePath: string | null;
 }
 
 const MovieImage = ({ className, backgroundImagePath }: MovieImageProps) => {
   const { data, isLoading, isError, isSuccess } = useMovieConfiguration();
+
+  if (!backgroundImagePath) {
+    return (
+      <img
+        src="https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg"
+        alt="Not found"
+        className={className}
+      />
+    );
+  }
 
   if (isLoading) {
     return <Spinner />;

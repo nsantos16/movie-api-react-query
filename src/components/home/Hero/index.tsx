@@ -17,7 +17,7 @@ const Hero = () => {
     isLoading: isLoadingDiscoverMovies,
     isError: isErrorDiscoverMovies,
     isSuccess: isSuccessDiscoverMovies,
-  } = useDiscoverMoviesQuery();
+  } = useDiscoverMoviesQuery(1, true);
 
   const heroMovieId = data?.results[0].id;
   const {
