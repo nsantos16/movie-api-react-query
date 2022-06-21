@@ -17,11 +17,15 @@ const HomeContent = () => {
 
   if (isSuccess) {
     return (
-      <div className="mt-[74px]">
+      <div className="mt-[74px] mb-[40px]">
         <div>{/* TODO: Filter by */}</div>
         <div className="space-y-[23px]">
           <SearchMovie />
-          <MoviesListSection sectionLabel="Discover" movies={data.results} />
+          <MoviesListSection
+            sectionLabel="Discover"
+            movies={data.results}
+            totalPages={data.total_pages}
+          />
         </div>
       </div>
     );

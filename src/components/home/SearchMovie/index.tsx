@@ -25,7 +25,7 @@ const SearchMovie = () => {
       </div>
       <input
         onChange={onChange}
-        className="w-full h-[65px] px-[25px] py-[20px] rounded-[20px] outline-none focus:bg-white bg-[#424242] border-solid border border-[#7c7c7c] text-opacity-60"
+        className="w-full h-[65px] px-[25px] py-[20px] rounded-[20px] outline-none text-white focus:bg-white focus:text-black bg-[#424242] border-solid border border-[#7c7c7c] text-opacity-60"
         placeholder="Search..."
         onFocus={onFocus}
         onBlur={onBlur}
