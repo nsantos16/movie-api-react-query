@@ -1,9 +1,19 @@
-import useDiscoverMovieQuery from '../queries/movieQueries';
+import Hero from '../components/home/Hero';
+import { useMovieConfiguration } from '../queries/movieQueries';
 
 const Home = () => {
-  const { data } = useDiscoverMovieQuery();
+  useMovieConfiguration();
+  // TODO: Create loading state component
 
-  return null;
+  // TODO: Create error state component
+
+  // TODO: Implement total_results zero case
+
+  return (
+    <div className="flex">
+      <Hero />
+    </div>
+  );
 };
 
 export default Home;

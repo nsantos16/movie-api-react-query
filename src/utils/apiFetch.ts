@@ -5,25 +5,32 @@ const getEnvVariableOrThrowError = (envVarName: string) => {
     throw new Error(`${envVarName} environment variable is not set`);
   }
 
-  return process.env[envVarName];
-}
+  return process.env[envVarName] as string;
+};
 
-const API_BEARER_TOKEN = getEnvVariableOrThrowError('REACT_APP_API_BEARER_TOKEN');
+const API_KEY = getEnvVariableOrThrowError('REACT_APP_API_KEY');
 
-async function apiFetch(
-  apiPath: string,
-  init?: RequestInit
-): Promise<Response> {
+export const getURLWithAPIKeyParam = (apiPath: string) => {
   const url = new URL(`${BASE_URL}${apiPath}`);
+  url.searchParams.append('api_key', API_KEY);
 
-  const options = { ...init, headers: {
-    Authorization: `Bearer ${API_BEARER_TOKEN}`,
-  } };
+  return url.toString();
+};
 
-  const result = await fetch(url.toString(), options);
+// https://developers.themoviedb.org/3/getting-started/images
+export const getImageURLWithAPIKeyParam = (
+  baseUrl: string,
+  fileSize: String,
+  imagePath: string,
+) => {
+  return `${baseUrl}${fileSize}${imagePath}`;
+};
+
+async function apiFetch<T>(apiPath: string, init?: RequestInit): Promise<T> {
+  const result = await fetch(getURLWithAPIKeyParam(apiPath), init);
 
   if (!result.ok) {
-    throw Error (`API fetch failed, path: ${apiPath}`);
+    throw Error(`API fetch failed, path: ${apiPath}`);
   }
 
   const resultJson = await result.json();
