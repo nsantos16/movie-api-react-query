@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { FilterCtxProvider } from './context/filterContext';
+import { MovieListCtxProvider } from './context/movieListContext';
 import Home from './pages/Home';
 
 const queryClient = new QueryClient();
@@ -9,11 +10,13 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <FilterCtxProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </BrowserRouter>
+        <MovieListCtxProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </BrowserRouter>
+        </MovieListCtxProvider>
       </FilterCtxProvider>
     </QueryClientProvider>
   );

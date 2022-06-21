@@ -28,7 +28,7 @@ export const useDiscoverMoviesQuery = (withoutFilters: boolean = false) => {
   return useQuery(
     ['movies', { currentPage, ...filters }],
     async () => {
-      if (searchTerm) {
+      if (searchTerm && !withoutFilters) {
         const movies = await apiFetch<PaginatedResponse<Movie>>(
           `/search/movie?query=${searchTerm}&page=${currentPage}`,
           { method: 'GET' },

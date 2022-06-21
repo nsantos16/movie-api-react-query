@@ -3,6 +3,7 @@ import ErrorMessage from '../../common/ErrorMessage';
 import MoviesListSection from '../../common/MoviesListSection';
 import Spinner from '../../common/Spinner';
 import FilterMovies from '../FilterMovies';
+import MyList from '../MyList';
 import SearchMovie from '../SearchMovie';
 
 const DiscoverList = () => {
@@ -24,6 +25,7 @@ const DiscoverList = () => {
         </div>
         <div className="space-y-[23px] col-span-9">
           <SearchMovie />
+          <MyList />
           <MoviesListSection
             sectionLabel="Discover"
             movies={data.results}

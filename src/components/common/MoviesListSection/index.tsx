@@ -9,13 +9,15 @@ import PaginationButton from '../PaginationButton';
 interface ListSectionProps {
   sectionLabel: string;
   movies: Movie[];
-  totalPages: number;
+  totalPages?: number;
+  withPagination?: boolean;
 }
 
 const MoviesListSection = ({
   sectionLabel,
   movies,
   totalPages,
+  withPagination = true,
 }: ListSectionProps) => {
   const { currentPage, setCurrentPage } = useContext(FilterContext);
 
@@ -36,20 +38,22 @@ const MoviesListSection = ({
           <MovieCard movie={movie} key={movie.id} />
         ))}
       </div>
-      <div className="flex space-x-[11px] self-end mt-[68px] mr-[20px]">
-        <PaginationButton
-          leftIcon={<ArrowRightIcon />}
-          label="Previous"
-          disabled={currentPage === 1}
-          onClick={onPreviousPage}
-        />
-        <PaginationButton
-          rightIcon={<ArrowLeftIcon />}
-          label="Next"
-          disabled={currentPage === totalPages || totalPages === 0}
-          onClick={onNextPage}
-        />
-      </div>
+      {withPagination && (
+        <div className="flex space-x-[11px] self-end mt-[68px] mr-[20px]">
+          <PaginationButton
+            leftIcon={<ArrowRightIcon />}
+            label="Previous"
+            disabled={currentPage === 1}
+            onClick={onPreviousPage}
+          />
+          <PaginationButton
+            rightIcon={<ArrowLeftIcon />}
+            label="Next"
+            disabled={currentPage === totalPages || totalPages === 0}
+            onClick={onNextPage}
+          />
+        </div>
+      )}
     </div>
   );
 };

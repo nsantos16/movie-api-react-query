@@ -1,5 +1,6 @@
 import DiscoverList from '../components/home/DiscoverList';
 import Hero from '../components/home/Hero';
+import MyList from '../components/home/MyList';
 import { useMovieConfiguration } from '../queries/movieQueries';
 
 const Home = () => {

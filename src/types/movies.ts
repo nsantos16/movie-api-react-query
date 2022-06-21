@@ -2,6 +2,7 @@ export interface Movie {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
+  genres: Genre[];
   id: number;
   original_language: string;
   original_title: string;
@@ -21,7 +22,6 @@ export interface Genre {
 }
 export interface MovieDetails extends Movie {
   runtime: number;
-  genres: Genre[];
 }
 
 export interface MovieConfiguration {

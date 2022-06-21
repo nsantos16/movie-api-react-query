@@ -12,7 +12,7 @@ interface MovieCardProps {
 const MovieCard = ({ movie }: MovieCardProps) => {
   return (
     <div className="bg-[#131313] rounded-[20px] w-[275px] flex flex-col items-center pt-[20px] pb-[27px] px-[23px] text-white relative transition hover:z-10 hover:rounded-b-none hover:bg-gray-800 group cursor-pointer">
-      <GenreLabel genreId={movie.genre_ids[0]} />
+      <GenreLabel genreId={movie?.genre_ids?.[0] ?? movie?.genres?.[0].id} />
       <MovieImage
         backgroundImagePath={movie.poster_path}
         className="w-[229px] h-[321px] rounded-[20px] object-cover"

@@ -1,3 +1,4 @@
+import useAddMovieToMyList from '../../../hooks/useAddMovieToMyList';
 import {
   useDiscoverMoviesQuery,
   useMovieDetails,
@@ -18,6 +19,7 @@ const Hero = () => {
     isError: isErrorDiscoverMovies,
     isSuccess: isSuccessDiscoverMovies,
   } = useDiscoverMoviesQuery(true);
+  const { addMovieToMyList } = useAddMovieToMyList();
 
   const heroMovieId = data?.results[0].id;
   const {
@@ -51,7 +53,13 @@ const Hero = () => {
         <div className="mt-[22px]">{heroMovieDetails.overview}</div>
         <div className="mt-[37px] flex space-x-[15px]">
           <PrimaryButton label="Watch Now" icon={<PlayIcon />} />
-          <OutlineButton label="Add to List" icon={<PlusIcon />} />
+          <OutlineButton
+            onClick={() => {
+              addMovieToMyList(heroMovieDetails);
+            }}
+            label="Add to List"
+            icon={<PlusIcon />}
+          />
         </div>
       </HeroLayout>
     );
