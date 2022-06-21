@@ -2,6 +2,7 @@ import { createContext, PropsWithChildren, useEffect, useState } from 'react';
 import useDebounce from '../hooks/useDebounce';
 
 interface FilterContextValue {
+  directSearchTerm: string;
   searchTerm: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   currentPage: number;
@@ -13,6 +14,7 @@ interface FilterContextValue {
 }
 
 export const FilterContext = createContext<FilterContextValue>({
+  directSearchTerm: '',
   searchTerm: '',
   setSearchTerm: () => {},
   currentPage: 1,
@@ -35,9 +37,18 @@ export const FilterCtxProvider = ({
   useEffect(() => {
     // Back to the first page every time a filter changes
     setCurrentPage(1);
-  }, [search, rankingFilter]);
+  }, [search, rankingFilter, filterCategories]);
+
+  useEffect(() => {
+    if (search) {
+      // Disable ranking & category filter when searching
+      setRankingFilter(null);
+      setFilterCategories([]);
+    }
+  }, [search]);
 
   const value = {
+    directSearchTerm: search,
     searchTerm: debounceSearch,
     setSearchTerm: setSearch,
     currentPage,

@@ -19,8 +19,11 @@ export interface PaginatedResponse<T> {
 // https://developers.themoviedb.org/3/discover/movie-discover
 // https://developers.themoviedb.org/3/search/search-movies
 export const useDiscoverMoviesQuery = (withoutFilters: boolean = false) => {
-  const { searchTerm, currentPage } = useContext(FilterContext);
-  const filters = withoutFilters ? {} : { searchTerm };
+  const { searchTerm, currentPage, filterCategories, rankingFilter } =
+    useContext(FilterContext);
+  const filters = withoutFilters
+    ? {}
+    : { searchTerm, filterCategories, rankingFilter };
 
   return useQuery(
     ['movies', { currentPage, ...filters }],
@@ -34,8 +37,20 @@ export const useDiscoverMoviesQuery = (withoutFilters: boolean = false) => {
         return movies;
       }
 
+      const filterQueries = `?page=${currentPage}${
+        filterCategories.length > 0
+          ? `&with_genres=${filterCategories.join(' ,')}`
+          : ''
+      }${
+        rankingFilter
+          ? `&vote_average.gte=${
+              rankingFilter - 2
+            }&vote_average.lte=${rankingFilter}`
+          : ''
+      }`;
+
       const movies = await apiFetch<PaginatedResponse<Movie>>(
-        `/discover/movie?page=${currentPage}`,
+        `/discover/movie${withoutFilters ? '' : filterQueries}`,
         {
           method: 'GET',
         },

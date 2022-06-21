@@ -46,7 +46,7 @@ const MoviesListSection = ({
         <PaginationButton
           rightIcon={<ArrowLeftIcon />}
           label="Next"
-          disabled={currentPage === totalPages}
+          disabled={currentPage === totalPages || totalPages === 0}
           onClick={onNextPage}
         />
       </div>

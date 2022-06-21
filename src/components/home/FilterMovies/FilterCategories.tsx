@@ -17,10 +17,19 @@ const FilterCategories = () => {
   }, []);
 
   const onSelectCategory = (categoryId: number) => {
-    setFilterCategories((prevFilterCategories) => [
-      ...prevFilterCategories,
-      categoryId,
-    ]);
+    const index = filterCategories.findIndex((id) => id === categoryId);
+
+    if (index === -1) {
+      setFilterCategories((prevFilterCategories) => [
+        ...prevFilterCategories,
+        categoryId,
+      ]);
+      return;
+    }
+
+    setFilterCategories((prevFilterCategories) =>
+      prevFilterCategories.filter((id) => id !== categoryId),
+    );
   };
 
   if (isSuccess) {

@@ -5,15 +5,16 @@ import ArrowUpIcon from '../../icons/ArrowUpIcon';
 interface DropdownSectionProps {
   children: React.ReactNode;
   label: string;
+  isOpen: boolean;
+  onToggle: () => void;
 }
 
-const DropdownSection = ({ children, label }: DropdownSectionProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const onToggle = () => {
-    setIsOpen((prevIsOpen) => !prevIsOpen);
-  };
-
+const DropdownSection = ({
+  children,
+  label,
+  isOpen,
+  onToggle,
+}: DropdownSectionProps) => {
   return (
     <div>
       <div
@@ -25,7 +26,7 @@ const DropdownSection = ({ children, label }: DropdownSectionProps) => {
         </span>
         <span className="text-white font-bold text-[24px]">{label}</span>
       </div>
-      {children}
+      {isOpen ? children : null}
     </div>
   );
 };

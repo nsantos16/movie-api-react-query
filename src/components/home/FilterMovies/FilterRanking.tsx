@@ -3,7 +3,7 @@ import { FilterContext } from '../../../context/filterContext';
 import FilterPanel from '../../common/FilterPanel';
 import RankingStars from '../../common/RankingStars';
 
-const DEFAULT_RANKING_FILTER = 8;
+const DEFAULT_RANKING_FILTER = 6;
 
 const FilterRanking = () => {
   const { rankingFilter, setRankingFilter } = useContext(FilterContext);

@@ -12,7 +12,7 @@ const ArrowUpIcon = ({ width = 6, height = 12 }: ArrowUpIconProps) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M0 12L6 6L0 0" fill="white" fill-opacity="0.5" />
+      <path d="M0 12L6 6L0 0" fill="white" fillOpacity="0.5" />
     </svg>
   );
 };
