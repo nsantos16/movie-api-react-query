@@ -19,7 +19,7 @@ const PaginationButton = ({
       {...btnProps}
       type="button"
       className={cn(
-        'bg-white bg-opacity-[9%] text-[18px] text-white rounded-[20px] py-[13px] px-[25px] flex items-center justify-center space-x-[15px] disabled:bg-opacity-5',
+        'bg-white bg-opacity-[9%] text-[18px] text-white rounded-[20px] py-[13px] px-[25px] flex items-center justify-center space-x-[15px] disabled:bg-opacity-5 disabled:opacity-80',
       )}
     >
       <div>{leftIcon}</div>

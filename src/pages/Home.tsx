@@ -1,4 +1,4 @@
-import HomeContent from '../components/home/DiscoverList';
+import DiscoverList from '../components/home/DiscoverList';
 import Hero from '../components/home/Hero';
 import { useMovieConfiguration } from '../queries/movieQueries';
 
@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <div className="flex flex-col">
       <Hero />
-      <HomeContent />
+      <DiscoverList />
     </div>
   );
 };

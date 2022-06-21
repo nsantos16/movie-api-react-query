@@ -6,6 +6,10 @@ interface FilterContextValue {
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  rankingFilter: number | null;
+  setRankingFilter: React.Dispatch<React.SetStateAction<number | null>>;
+  filterCategories: number[];
+  setFilterCategories: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 export const FilterContext = createContext<FilterContextValue>({
@@ -13,6 +17,10 @@ export const FilterContext = createContext<FilterContextValue>({
   setSearchTerm: () => {},
   currentPage: 1,
   setCurrentPage: () => {},
+  rankingFilter: null,
+  setRankingFilter: () => {},
+  filterCategories: [],
+  setFilterCategories: () => {},
 });
 
 export const FilterCtxProvider = ({
@@ -21,17 +29,23 @@ export const FilterCtxProvider = ({
   const [search, setSearch] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(1);
   const debounceSearch = useDebounce(search, 500);
+  const [rankingFilter, setRankingFilter] = useState<number | null>(null);
+  const [filterCategories, setFilterCategories] = useState<number[]>([]);
 
   useEffect(() => {
     // Back to the first page every time a filter changes
     setCurrentPage(1);
-  }, [search]);
+  }, [search, rankingFilter]);
 
   const value = {
     searchTerm: debounceSearch,
     setSearchTerm: setSearch,
     currentPage,
     setCurrentPage,
+    rankingFilter,
+    setRankingFilter,
+    filterCategories,
+    setFilterCategories,
   };
 
   return (

@@ -1,7 +1,7 @@
 import { Movie } from '../../../types/movies';
 import { parseDateFormat } from '../../../utils/date';
 import MovieImage from '../MovieImage';
-import RatingStars from '../RatingStars';
+import RatingStars from '../RankingStars';
 import GenreLabel from './GenreLabel';
 import MovieCardButtons from './MovieCardButtons';
 

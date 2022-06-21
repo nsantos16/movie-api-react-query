@@ -36,7 +36,7 @@ const MoviesListSection = ({
           <MovieCard movie={movie} key={movie.id} />
         ))}
       </div>
-      <div className="flex space-x-[11px] self-end mt-[68px]">
+      <div className="flex space-x-[11px] self-end mt-[68px] mr-[20px]">
         <PaginationButton
           leftIcon={<ArrowRightIcon />}
           label="Previous"
