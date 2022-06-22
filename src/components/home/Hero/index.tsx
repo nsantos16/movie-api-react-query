@@ -15,41 +15,22 @@ import PlusIcon from '../../icons/PlusIcon';
 import HeroLayout from './HeroLayout';
 
 interface HeroProps {
-  movie?: MovieDetails;
+  movieId: string;
+  withPoster?: boolean;
 }
 
-const Hero = ({ movie }: HeroProps) => {
-  const {
-    data,
-    isLoading: isLoadingDiscoverMovies,
-    isError: isErrorDiscoverMovies,
-    isSuccess: isSuccessDiscoverMovies,
-  } = useDiscoverMoviesQuery(true);
+const Hero = ({ movieId, withPoster = false }: HeroProps) => {
   const { addMovieToMyList } = useAddMovieToMyList();
 
-  const heroMovieId = data?.results[0].id;
-  const movieId = movie ? movie.id.toString() : heroMovieId?.toString();
-  const {
-    data: heroMovieDetails,
-    isLoading: isLoadingMovieDetails,
-    isError: isErrorMovieDetails,
-    isSuccess: isSuccessMovieDetails,
-  } = useMovieDetails(movieId);
+  const { data: heroMovieDetails, isSuccess: isSuccessMovieDetails } =
+    useMovieDetails(movieId);
   const { onRedirect } = useOnRedirectMovie();
-
-  if (isLoadingDiscoverMovies || isLoadingMovieDetails) {
-    return <Spinner />;
-  }
-
-  if (isErrorDiscoverMovies || isErrorMovieDetails) {
-    return <ErrorMessage />;
-  }
 
   if (isSuccessMovieDetails) {
     return (
       <HeroLayout
         backgroundImagePath={heroMovieDetails.poster_path}
-        isMovie={movie !== undefined}
+        withPoster={withPoster}
       >
         <div className="flex space-x-[39px] text-sm opacity-50">
           <div>{heroMovieDetails?.genres.map((genre) => genre.name)[0]}</div>

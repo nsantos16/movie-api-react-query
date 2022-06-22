@@ -1,22 +1,37 @@
 import DiscoverList from '../components/home/DiscoverList';
 import Hero from '../components/home/Hero';
 import MyList from '../components/home/MyList';
-import { useMovieConfiguration } from '../queries/movieQueries';
+import {
+  useDiscoverMoviesQuery,
+  useMovieConfiguration,
+} from '../queries/movieQueries';
 
 const Home = () => {
   useMovieConfiguration();
-  // TODO: Create loading state component
+  const { data, isLoading, isError, isSuccess } = useDiscoverMoviesQuery(true);
 
-  // TODO: Create error state component
+  if (isLoading) {
+    // TODO: Show loading state
+    return null;
+  }
 
-  // TODO: Implement total_results zero case
+  if (isError) {
+    // TODO: Show error state
+    return null;
+  }
 
-  return (
-    <div className="flex flex-col">
-      <Hero />
-      <DiscoverList />
-    </div>
-  );
+  if (isSuccess) {
+    const heroMovieId = data.results[0].id;
+
+    return (
+      <div className="flex flex-col">
+        <Hero movieId={heroMovieId.toString()} />
+        <DiscoverList />
+      </div>
+    );
+  }
+
+  return null;
 };
 
 export default Home;

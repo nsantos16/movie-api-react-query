@@ -102,3 +102,31 @@ export const useMovieGenres = () => {
     return movieGenres.genres;
   });
 };
+
+// https://developers.themoviedb.org/3/movies/get-top-rated-movies
+export const useSimilarMovies = (movieId: string) => {
+  return useQuery(['similarMovie', { movieId }], async () => {
+    const similarMovies = await apiFetch<PaginatedResponse<Movie>>(
+      `/movie/${movieId}/similar`,
+      {
+        method: 'GET',
+      },
+    );
+
+    return similarMovies;
+  });
+};
+
+// https://developers.themoviedb.org/3/movies/get-top-rated-movies
+export const useTopRatedMovies = () => {
+  return useQuery('topRatedMovies', async () => {
+    const topRatedMovies = await apiFetch<PaginatedResponse<Movie>>(
+      `/movie/top_rated`,
+      {
+        method: 'GET',
+      },
+    );
+
+    return topRatedMovies;
+  });
+};

@@ -1,10 +1,10 @@
 import { Navigate, useParams } from 'react-router-dom';
 import Hero from '../components/home/Hero';
-import { useMovieDetails } from '../queries/movieQueries';
+import BestRatedMovies from '../components/movie/BestRatedMovies';
+import SimilarMovies from '../components/movie/SimilarMovies';
 
 const Movie = () => {
   const { movieId } = useParams<{ movieId: string }>();
-  const { data: movie } = useMovieDetails(movieId);
 
   if (!movieId) {
     return <Navigate to="/" />;
@@ -12,7 +12,11 @@ const Movie = () => {
 
   return (
     <div className="flex flex-col">
-      <Hero movie={movie} />
+      <Hero movieId={movieId} withPoster />
+      <div className="mt-[80px] space-y-[132px] flex flex-col justify-center items-center">
+        <SimilarMovies movieId={movieId} />
+        <BestRatedMovies />
+      </div>
     </div>
   );
 };

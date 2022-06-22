@@ -3,13 +3,13 @@ import MovieImage from '../../common/MovieImage';
 interface HeroLayoutProps {
   children: React.ReactNode;
   backgroundImagePath: string;
-  isMovie?: boolean;
+  withPoster?: boolean;
 }
 
 const HeroLayout = ({
   children,
   backgroundImagePath,
-  isMovie = false,
+  withPoster = false,
 }: HeroLayoutProps) => {
   return (
     <section className="flex  justify-center relative w-full bg-gradient-to-r from-[#070707] to-gray-800">
@@ -18,7 +18,7 @@ const HeroLayout = ({
         className="w-full h-full absolute mix-blend-overlay object-cover"
       />
       <div className="flex flex-wrap justify-center lg:flex-nowrap pt-[75px] pb-[81.92px] text-white z-10 space-x-[80px] space-y-[40px] lg:space-y-0">
-        {isMovie ? (
+        {withPoster ? (
           <div>
             <MovieImage
               backgroundImagePath={backgroundImagePath}
