@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Environment variables
+
+For started with this project you need to create an API Key provided by https://developers.themoviedb.org/
+After getting the API Key you should create a `.env` file in the root directory of the project, with `REACT_APP_API_KEY` value (check `.env.example`)
+
 ## Available Scripts
 
 In the project directory, you can run:
