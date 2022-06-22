@@ -21,7 +21,8 @@ const MovieImage = ({ className, backgroundImagePath }: MovieImageProps) => {
   }
 
   if (isLoading) {
-    return <Spinner />;
+    // TODO: Implement loading state
+    return null;
   }
 
   if (isError) {
