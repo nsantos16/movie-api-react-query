@@ -63,7 +63,7 @@ export const useDiscoverMoviesQuery = (withoutFilters: boolean = false) => {
 };
 
 // https://developers.themoviedb.org/3/movies/get-movie-details
-export const useMovieDetails = (movieId: number | undefined) => {
+export const useMovieDetails = (movieId: string | undefined) => {
   return useQuery(
     ['movie', { movieId }],
     async () => {

@@ -1,3 +1,5 @@
+import useAddMovieToMyList from '../../../hooks/useAddMovieToMyList';
+import useOnRedirectMovie from '../../../hooks/useOnRedirectMovie';
 import { Movie } from '../../../types/movies';
 import { parseDateFormat } from '../../../utils/date';
 import MovieImage from '../MovieImage';
@@ -10,8 +12,12 @@ interface MovieCardProps {
 }
 
 const MovieCard = ({ movie }: MovieCardProps) => {
+  const { onRedirect } = useOnRedirectMovie();
+
   return (
-    <div className="bg-[#131313] rounded-[20px] w-[275px] flex flex-col items-center pt-[20px] pb-[27px] px-[23px] text-white relative transition hover:z-10 hover:rounded-b-none hover:bg-gray-800 group cursor-pointer">
+    <div className="bg-[#131313] rounded-[20px] w-[275px] flex flex-col items-center pt-[20px] pb-[27px] px-[23px] text-white relative transition hover:z-10 hover:rounded-b-none hover:bg-gray-800 group cursor-pointer" onClick={() => {
+      onRedirect(movie.id.toString())
+    }}>
       <GenreLabel genreId={movie?.genre_ids?.[0] ?? movie?.genres?.[0].id} />
       <MovieImage
         backgroundImagePath={movie.poster_path}
