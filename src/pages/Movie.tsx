@@ -13,7 +13,7 @@ const Movie = () => {
   return (
     <div className="flex flex-col">
       <Hero movieId={movieId} withPoster />
-      <div className="mt-[80px] space-y-[132px] flex flex-col justify-center items-center">
+      <div className="mt-[80px] space-y-[132px] flex flex-col justify-center items-center sm:px-[130px] px-[40px]">
         <SimilarMovies movieId={movieId} />
         <BestRatedMovies />
       </div>

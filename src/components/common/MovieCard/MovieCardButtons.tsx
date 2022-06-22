@@ -26,7 +26,7 @@ const MovieCardButtons = ({ movie }: MovieCardButtonsProps) => {
         onClick={() => {
           addMovieToMyList(movie);
         }}
-        icon={<PlusIcon height={21} width={19} stroke="#192AC3" />}
+        icon={<PlusIcon height={19} width={17} stroke="#192AC3" />}
       />
     </div>
   );

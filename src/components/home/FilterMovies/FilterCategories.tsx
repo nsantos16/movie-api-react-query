@@ -34,10 +34,10 @@ const FilterCategories = () => {
 
   if (isSuccess) {
     return (
-      <FilterPanel panelLabel="Categories">
+      <FilterPanel panelLabel="Category">
         <div className="grid grid-cols-1 grid-flow-row 2xl:grid-cols-2 gap-x-1 gap-y-[18px]">
           {data.map(({ name, id }) => (
-            <div className="space-x-[15px] flex items-center">
+            <div className="space-x-[15px] flex items-center" key={id}>
               <Checkbox
                 isSelected={
                   !!filterCategories.find((filterId) => filterId === id)

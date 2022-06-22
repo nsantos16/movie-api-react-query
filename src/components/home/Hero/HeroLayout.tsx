@@ -17,7 +17,7 @@ const HeroLayout = ({
         backgroundImagePath={backgroundImagePath}
         className="w-full h-full absolute mix-blend-overlay object-cover"
       />
-      <div className="flex flex-wrap justify-center lg:flex-nowrap pt-[75px] pb-[81.92px] text-white z-10 space-x-[80px] space-y-[40px] lg:space-y-0">
+      <div className="flex flex-wrap justify-center lg:flex-nowrap pt-[75px] pb-[81.92px] text-white z-10 sm:space-x-[80px] space-y-[40px] lg:space-y-0">
         {withPoster ? (
           <div>
             <MovieImage
@@ -26,7 +26,9 @@ const HeroLayout = ({
             />
           </div>
         ) : null}
-        <div className="flex flex-col max-w-3xl">{children}</div>
+        <div className="flex flex-col items-center sm:items-start sm:text-left max-w-3xl px-[40px] sm:px-0">
+          {children}
+        </div>
       </div>
     </section>
   );
