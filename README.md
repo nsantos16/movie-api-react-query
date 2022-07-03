@@ -1,8 +1,8 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Move API - React Query
+<img width="1512" alt="Screen Shot 2022-07-03 at 03 08 12" src="https://user-images.githubusercontent.com/9642510/177027234-14230345-1ba5-47c4-adfd-fe80379a86a0.png">
 
 ## Environment variables
+
 
 For started with this project you need to create an API Key provided by https://developers.themoviedb.org/
 After getting the API Key you should create a `.env` file in the root directory of the project, with `REACT_APP_API_KEY` value (check `.env.example`)
